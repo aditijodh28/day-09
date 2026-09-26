@@ -1,0 +1,120 @@
+<h1>Facilities</h1>
+
+<div class="filters">
+
+  <input
+    type="text"
+    placeholder="Search location..."
+    [(ngModel)]="searchText"
+    (input)="applyFilters()"
+  >
+
+  <select
+    [(ngModel)]="waterFilter"
+    (change)="applyFilters()"
+  >
+    <option value="all">All Water Status</option>
+    <option value="available">Available</option>
+    <option value="not-available">
+      Not Available
+    </option>
+  </select>
+
+  <select
+    [(ngModel)]="sortField"
+    (change)="applyFilters()"
+  >
+    <option value="facility_id">
+      Facility ID
+    </option>
+
+    <option value="cleanliness">
+      Cleanliness
+    </option>
+
+    <option value="complaints">
+      Complaints
+    </option>
+  </select>
+
+</div>
+
+<div *ngIf="loading">
+  Loading facilities...
+</div>
+
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>
+
+<table *ngIf="!loading && !error">
+
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Location</th>
+      <th>Cleanliness</th>
+      <th>Odor</th>
+      <th>Waste</th>
+      <th>Water</th>
+      <th>Complaints</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr
+      *ngFor="let facility of filteredFacilities"
+    >
+
+      <td>
+        {{ facility.facility_id }}
+      </td>
+
+      <td>
+        {{ facility.location }}
+      </td>
+
+      <td>
+        {{ facility.cleanliness_score }}
+      </td>
+
+      <td>
+        {{ facility.odor_score }}
+      </td>
+
+      <td>
+        {{ facility.waste_level }}
+      </td>
+
+      <td>
+        {{
+          facility.water_availability
+            ? 'Yes'
+            : 'No'
+        }}
+      </td>
+
+      <td>
+        {{ facility.complaints }}
+      </td>
+
+      <td>
+
+        <a
+          [routerLink]="[
+            '/facilities',
+            facility.facility_id
+          ]"
+        >
+          View
+        </a>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+
+</table>

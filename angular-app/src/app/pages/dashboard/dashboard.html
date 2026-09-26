@@ -1,0 +1,33 @@
+<h1>Dashboard</h1>
+
+<div *ngIf="loading">
+  Loading dashboard...
+</div>
+
+<div *ngIf="!loading && error" class="error">
+  {{ error }}
+</div>
+
+<div *ngIf="!loading && !error" class="metrics">
+
+  <div class="card">
+    <h3>Total Facilities</h3>
+    <p>{{ totalFacilities }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Average Cleanliness</h3>
+    <p>{{ averageCleanliness | number:'1.1-1' }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Total Complaints</h3>
+    <p>{{ totalComplaints }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Water Available</h3>
+    <p>{{ waterAvailable }}</p>
+  </div>
+
+</div>

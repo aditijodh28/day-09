@@ -1,0 +1,53 @@
+<h1>Inspection History</h1>
+
+<table>
+
+  <thead>
+
+    <tr>
+      <th>ID</th>
+      <th>Facility</th>
+      <th>Cleanliness</th>
+      <th>Odor</th>
+      <th>Waste</th>
+      <th>Complaints</th>
+      <th>Date</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr
+      *ngFor="let inspection of inspections"
+    >
+
+      <td>{{ inspection.id }}</td>
+
+      <td>{{ inspection.facility_id }}</td>
+
+      <td>
+        {{ inspection.cleanliness_score }}
+      </td>
+
+      <td>
+        {{ inspection.odor_score }}
+      </td>
+
+      <td>
+        {{ inspection.waste_level }}
+      </td>
+
+      <td>
+        {{ inspection.complaints }}
+      </td>
+
+      <td>
+        {{ inspection.inspection_date | date }}
+      </td>
+
+    </tr>
+
+  </tbody>
+
+</table>
